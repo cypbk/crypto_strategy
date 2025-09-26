@@ -1,0 +1,31 @@
+# 系統預設配置
+database:
+  path: "data/stock_data.db"
+  cleanup_days: 190
+
+fetcher:
+  max_workers: 2
+  delay: 0.5
+  timeout: 30
+
+logging:
+  level: "INFO"
+  file: "trading_system.log"
+  format: "%(asctime)s - %(levelname)s - %(message)s"
+
+output:
+  directory: "data/"
+  csv_format: true
+  json_format: true
+
+# 路徑配置
+paths:
+  symbol_info: "data/us_stock_symbols.csv"
+  output_dir: "data/"
+  signals_history_file: "data/multi_signals_history.json"
+
+# 通用參數
+general:
+  min_price: 10
+  min_volume: 500000
+  lookback_days: 60
