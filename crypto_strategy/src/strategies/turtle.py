@@ -20,25 +20,31 @@ class TurtleStrategy(BaseStrategy):
     """海龜交易策略分析器"""
     
     def get_default_config(self) -> dict:
-        """預設配置"""
-        return {
-            'atr_period': 20,
-            'atr_method': 'sma',
-            'system1_entry': 20,
-            'system2_entry': 55,
-            'system1_exit': 10,
-            'system2_exit': 20,
-            'stop_loss_atr': 2.0,
-            'add_unit_atr': 0.5,
-            'max_units_per_stock': 4,
-            'max_total_units': 12,
-            'risk_per_trade': 0.02,
-            'account_risk': 0.12,
-            'min_price': 10,
-            'min_volume': 500000,
-            'lookback_days': 60,
-            'min_periods': 60
-        }
+        """從配置檔案載入預設配置"""
+        from ..core.config import config_manager
+        try:
+            return config_manager.get_strategy_config('turtle')
+        except Exception as e:
+            self.logger.warning(f"無法載入海龜策略配置，使用硬編碼預設值: {e}")
+            # 備用硬編碼配置（與原始系統完全一致）
+            return {
+                'atr_period': 20,
+                'atr_method': 'sma',
+                'system1_entry': 20,
+                'system2_entry': 55,
+                'system1_exit': 10,
+                'system2_exit': 20,
+                'stop_loss_atr': 2.0,
+                'add_unit_atr': 0.5,
+                'max_units_per_stock': 4,
+                'max_total_units': 12,
+                'risk_per_trade': 0.02,
+                'account_risk': 0.12,
+                'min_price': 10,
+                'min_volume': 500000,
+                'lookback_days': 60,
+                'min_periods': 60
+            }
     
     def calculate_indicators(self, stock_data: pd.DataFrame) -> pd.DataFrame:
         """計算海龜策略指標"""

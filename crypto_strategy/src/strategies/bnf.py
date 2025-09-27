@@ -19,15 +19,21 @@ class BNFStrategy(BaseStrategy):
     """BNF策略分析器 - 只檢測買入信號"""
     
     def get_default_config(self) -> dict:
-        """預設配置"""
-        return {
-            'ma_period': 25,
-            'deviation_threshold': -0.20,
-            'min_price': 10,
-            'min_volume': 500000,
-            'lookback_days': 30,
-            'min_periods': 30
-        }
+        """從配置檔案載入預設配置"""
+        from ..core.config import config_manager
+        try:
+            return config_manager.get_strategy_config('bnf')
+        except Exception as e:
+            self.logger.warning(f"無法載入BNF策略配置，使用硬編碼預設值: {e}")
+            # 備用硬編碼配置（與原始系統完全一致）
+            return {
+                'ma_period': 25,
+                'deviation_threshold': -0.20,
+                'min_price': 10,
+                'min_volume': 500000,
+                'lookback_days': 30,
+                'min_periods': 30
+            }
     
     def calculate_indicators(self, stock_data: pd.DataFrame) -> pd.DataFrame:
         """計算BNF指標"""

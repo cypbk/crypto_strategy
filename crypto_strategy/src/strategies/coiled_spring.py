@@ -20,19 +20,25 @@ class CoiledSpringStrategy(BaseStrategy):
     """蓄勢待發策略分析器 - 尋找整理後準備突破的股票"""
     
     def get_default_config(self) -> dict:
-        """預設配置"""
-        return {
-            'volatility_threshold': 0.3,  # 3個月波動門檻
-            'volatility_contract_ratio': 0.5,  # 波動收縮比例
-            'volume_contract_ratio': 0.55,  # 成交量收縮比例
-            'trend_days_threshold': 60,  # 趨勢確認天數門檻
-            'ma_periods': [20, 50, 100],  # 均線週期
-            'volatility_periods': [10, 60],  # 波動性計算週期
-            'trend_period': 120,  # 趨勢分析週期
-            'min_price': 10,  # 最低股價
-            'min_volume': 500000,  # 最低成交量
-            'min_periods': 120
-        }
+        """從配置檔案載入預設配置"""
+        from ..core.config import config_manager
+        try:
+            return config_manager.get_strategy_config('coiled_spring')
+        except Exception as e:
+            self.logger.warning(f"無法載入蓄勢待發策略配置，使用硬編碼預設值: {e}")
+            # 備用硬編碼配置（與原始系統完全一致）
+            return {
+                'volatility_threshold': 0.3,  # 3個月波動門檻
+                'volatility_contract_ratio': 0.5,  # 波動收縮比例
+                'volume_contract_ratio': 0.55,  # 成交量收縮比例
+                'trend_days_threshold': 60,  # 趨勢確認天數門檻
+                'ma_periods': [20, 50, 100],  # 均線週期
+                'volatility_periods': [10, 60],  # 波動性計算週期
+                'trend_period': 120,  # 趨勢分析週期
+                'min_price': 10,  # 最低股價
+                'min_volume': 500000,  # 最低成交量
+                'min_periods': 120
+            }
     
     def calculate_indicators(self, stock_data: pd.DataFrame) -> pd.DataFrame:
         """計算蓄勢待發策略需要的技術指標"""
