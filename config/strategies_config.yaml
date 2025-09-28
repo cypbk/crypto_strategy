@@ -1,0 +1,42 @@
+# 策略參數配置 - 與原始系統完全一致
+
+# 海龜策略配置
+turtle:
+  atr_period: 20
+  atr_method: "sma"
+  system1_entry: 20
+  system2_entry: 55
+  system1_exit: 10
+  system2_exit: 20
+  stop_loss_atr: 2.0
+  add_unit_atr: 0.5
+  max_units_per_stock: 4
+  max_total_units: 12
+  risk_per_trade: 0.02
+  account_risk: 0.12
+  min_price: 10
+  min_volume: 500000
+  lookback_days: 60
+  min_periods: 60
+
+# BNF策略配置
+bnf:
+  ma_period: 25
+  deviation_threshold: -0.20
+  min_price: 10
+  min_volume: 500000
+  lookback_days: 30
+  min_periods: 30
+
+# 蓄勢待發策略配置
+coiled_spring:
+  volatility_threshold: 0.3
+  volatility_contract_ratio: 0.5
+  volume_contract_ratio: 0.55
+  trend_days_threshold: 60
+  ma_periods: [20, 50, 100]
+  volatility_periods: [10, 60]
+  trend_period: 120
+  min_price: 10
+  min_volume: 500000
+  min_periods: 120

@@ -1,0 +1,42 @@
+# 多策略交易系統依賴清單
+
+# 核心依賴
+pandas>=1.3.0
+numpy>=1.21.0
+yfinance>=0.1.70
+talib>=0.4.19
+
+# 配置管理
+PyYAML>=6.0
+
+# 資料庫
+sqlite3  # Python內建
+
+# 並發處理
+concurrent.futures  # Python內建
+
+# 日期時間處理
+datetime  # Python內建
+
+# 類型提示
+typing  # Python內建
+
+# 資料類別 (Python 3.7+)
+dataclasses  # Python 3.7+內建
+
+# 路徑處理
+pathlib  # Python內建
+
+# 日誌
+logging  # Python內建
+
+# 警告處理
+warnings  # Python內建
+
+# JSON處理
+json  # Python內建
+
+# 系統相關
+os  # Python內建
+sys  # Python內建
+time  # Python內建
