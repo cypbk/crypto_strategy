@@ -1,0 +1,62 @@
+# 加密貨幣交易系統配置
+
+# API配置
+apis:
+  coingecko:
+    base_url: "https://api.coingecko.com/api/v3"
+    rate_limit: 50  # calls per minute
+    timeout: 30
+    
+  binance:
+    exchange: "binance"
+    rate_limit: 1200  # requests per minute
+    timeout: 30
+
+# 資料源配置
+data_sources:
+  market_cap_rank:
+    source: "coingecko"
+    limit: 200
+    update_frequency: "weekly"
+    
+  price_data:
+    source: "binance"
+    timeframe: "1d"
+    limit: 190  # days
+    
+# 交易對配置
+trading_pairs:
+  base_currency: "USDT"
+  supported_currencies:
+    - "BTC"
+    - "ETH" 
+    - "BNB"
+    - "SOL"
+    - "XRP"
+    - "ADA"
+    - "AVAX"
+    - "DOGE"
+    - "TRX"
+    - "LINK"
+    - "DOT"
+    - "MATIC"
+    - "LTC"
+    - "BCH"
+    - "UNI"
+    - "ATOM"
+    - "FIL"
+    - "XLM"
+    - "VET"
+    - "ICP"
+
+# 資料驗證配置
+validation:
+  min_market_cap: 100000000  # 1億美元
+  min_volume_24h: 1000000    # 100萬美元
+  max_price_deviation: 0.5   # 50%價格偏差檢查
+  
+# 錯誤處理配置
+error_handling:
+  max_retries: 3
+  retry_delay: 5
+  circuit_breaker_threshold: 10

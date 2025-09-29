@@ -14,8 +14,8 @@ turtle:
   max_total_units: 12
   risk_per_trade: 0.02
   account_risk: 0.12
-  min_price: 10
-  min_volume: 500000
+  min_price: 0.01  # 調整為加密貨幣適用的最低價格
+  min_volume: 1000000  # 調整為USDT計算的成交量
   lookback_days: 60
   min_periods: 60
 
@@ -23,8 +23,8 @@ turtle:
 bnf:
   ma_period: 25
   deviation_threshold: -0.20
-  min_price: 10
-  min_volume: 500000
+  min_price: 0.01  # 調整為加密貨幣適用的最低價格
+  min_volume: 1000000  # 調整為USDT計算的成交量
   lookback_days: 30
   min_periods: 30
 
@@ -37,6 +37,6 @@ coiled_spring:
   ma_periods: [20, 50, 100]
   volatility_periods: [10, 60]
   trend_period: 120
-  min_price: 10
-  min_volume: 500000
+  min_price: 0.01  # 調整為加密貨幣適用的最低價格
+  min_volume: 1000000  # 調整為USDT計算的成交量
   min_periods: 120

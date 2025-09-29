@@ -105,6 +105,9 @@ class BNFStrategy(BaseStrategy):
                 )
                 
                 signals.append(signal)
+                
+                # 標記信號到資料中
+                stock_data.loc[stock_data.index[-1], 'bnf_buy_signal'] = 1
             
             self.log_signal_detection(symbol, len(signals))
             return signals

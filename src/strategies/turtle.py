@@ -120,6 +120,8 @@ class TurtleStrategy(BaseStrategy):
                     )
                     if signal:
                         signals.append(signal)
+                        # 標記信號到資料中
+                        stock_data.loc[stock_data.index[i], 'system1_breakout'] = 1
                 
                 # 檢測系統二突破
                 if row.get('system2_breakout'):
@@ -129,6 +131,8 @@ class TurtleStrategy(BaseStrategy):
                     )
                     if signal:
                         signals.append(signal)
+                        # 標記信號到資料中
+                        stock_data.loc[stock_data.index[i], 'system2_breakout'] = 1
             
             self.log_signal_detection(symbol, len(signals))
             return signals

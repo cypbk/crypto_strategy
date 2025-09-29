@@ -3,10 +3,23 @@ database:
   path: "data/stock_data.db"
   cleanup_days: 190
 
+# 加密貨幣專用配置
+crypto_database:
+  path: "data/crypto_data.db"
+  cleanup_days: 190
+
 fetcher:
   max_workers: 2
   delay: 0.5
   timeout: 30
+
+# 加密貨幣資料抓取配置
+crypto_fetcher:
+  max_workers: 2
+  delay: 1.0
+  timeout: 30
+  coingecko_delay: 2.0
+  binance_delay: 0.1
 
 logging:
   level: "INFO"
@@ -24,8 +37,20 @@ paths:
   output_dir: "data/"
   signals_history_file: "data/multi_signals_history.json"
 
+# 加密貨幣路徑配置
+crypto_paths:
+  pairs_info: "data/crypto_pairs.csv"
+  output_dir: "data/"
+  signals_history_file: "data/crypto_signals_history.json"
+
 # 通用參數
 general:
   min_price: 10
   min_volume: 500000
+  lookback_days: 60
+
+# 加密貨幣通用參數
+crypto_general:
+  min_price: 0.01
+  min_volume_usdt: 1000000
   lookback_days: 60
